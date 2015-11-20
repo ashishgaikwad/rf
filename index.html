@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta chartset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<title>RF</title>
+
+	<script src="sprite.js"></script>
+
+	<style>
+	canvas {
+		display: block;
+		position: absolute;
+		margin: auto;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+	</style>
+</head>
+<body>
+
+<script>
+
+var 
+
+canvas,
+ctx, 
+viewWidth,
+viewHeight,
+car = {};
+
+function main() {
+	console.log("IN main");
+	canvas = document.createElement("canvas");
+	viewWidth = window.innerWidth;
+	viewHeight = window.innerHeight;
+
+	if(viewWidth >= 500) {
+		viewWidth = 320;
+		viewHeight = 480;
+		canvas.style.border = "1px solid #000";
+		evt = "keydown";
+	}
+
+	canvas.width = viewWidth;
+	canvas.height = viewHeight;
+
+	ctx = canvas.getContext("2d");
+	document.body.appendChild(canvas);
+
+	var img = new Image();
+	img.onload = function() {
+		initSprites(this);
+		ctx.fillStyle = s_bg.color;
+
+		run();
+	}
+
+}
+
+function run() {
+	var mainLoop = function() {
+		update();
+		render();
+		window.requestAnimationFrame(mainLoop, canvas);
+	}
+	window.requestAnimationFrame(mainLoop, canvas);
+}
+
+main();
+
+</script>
+
+</html>

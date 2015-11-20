@@ -1,0 +1,17 @@
+.sprite {
+    background-image: url(spritesheet.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sprite-road {
+    width: 320px;
+    height: 253px;
+    background-position: 0 0;
+}
+
+.sprite-ycar {
+    width: 47px;
+    height: 102px;
+    background-position: -320px 0;
+}
