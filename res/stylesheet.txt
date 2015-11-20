@@ -6,7 +6,7 @@
 
 .sprite-road {
     width: 320px;
-    height: 253px;
+    height: 506px;
     background-position: 0 0;
 }
 

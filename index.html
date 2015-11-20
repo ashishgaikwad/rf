@@ -33,6 +33,7 @@ canvas,
 ctx, 
 viewWidth,
 viewHeight,
+fg_y_pos = 0,
 car = {};
 
 function main() {
@@ -57,10 +58,12 @@ function main() {
 	var img = new Image();
 	img.onload = function() {
 		initSprites(this);
-		ctx.fillStyle = s_bg.color;
+		//ctx.fillStyle = s_bg.color;
 
 		run();
 	}
+
+	img.src = "res/spritesheet.png";
 
 }
 
@@ -71,6 +74,38 @@ function run() {
 		window.requestAnimationFrame(mainLoop, canvas);
 	}
 	window.requestAnimationFrame(mainLoop, canvas);
+}
+
+function update() {
+	frames++;
+	
+	// below should be gradual accelaration;
+	var acc = 2;
+	fg_y_pos += acc;
+}
+
+function render() {
+
+	ctx.fillRect(0, 0, viewWidth, viewHeight);
+
+	//s_bg.draw(ctx, 0, viewHeight - s_bg.height);
+	//s_bg.draw(ctx, s_bg.width, viewHeight - s_bg.height);
+
+	//s_fg.draw(ctx, viewWidth - s_fg.width, fg_y_pos);
+	//s_fg.draw(ctx, viewWidth - s_fg.width, fg_y_pos+s_fg.height);
+
+	s_fg.draw(ctx, 0, fg_y_pos);
+ 
+if (fg_y_pos >= 0 && fg_y_pos <= viewHeight) {
+    s_fg.draw(ctx, 0, fg_y_pos - s_fg.height);
+}
+ 
+// Scrolling off the bottom of the screen
+if (fg_y_pos > viewHeight) {
+    fg_y_pos = viewHeight - s_fg.height;
+}
+	
+
 }
 
 main();
